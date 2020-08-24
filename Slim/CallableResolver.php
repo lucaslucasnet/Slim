@@ -47,13 +47,10 @@ final class CallableResolver implements CallableResolverInterface
      */
     public function resolve($toResolve)
     {
-        die($toResolve);
-
         if (is_callable($toResolve)) {
             return $toResolve;
         }
-
-
+        
         $resolved = $toResolve;
 
         if (is_string($toResolve)) {
