@@ -94,6 +94,19 @@ final class CallableResolver implements CallableResolverInterface
      */
     protected function resolveCallable($class, $method)
     {
+
+        /** ************************************ */
+        /** PARTE AGREGADA LUCASLUCAS 24-08-2020 */
+        $customClass = '\\Custom\\'.$class;
+        if ($this->container->has($customClass)) {
+            return [$this->container->get($class), $method];
+        }
+        if (class_exists($customClass)) {
+            return [new $customClass($this->container), $method];
+        }
+        /** END - PARTE AGREGADA LUCASLUCAS */
+        /** ************************************ */
+
         if ($this->container->has($class)) {
             return [$this->container->get($class), $method];
         }
